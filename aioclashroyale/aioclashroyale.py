@@ -1,17 +1,19 @@
-from aioclashroyale.client import ABCClient, Token
+from aioclashroyale.const import CLAN_WAR_LOG, CLANS, LOCATIONS
 
 
-class AioClashRoyale(ABCClient):
-    def __init__(self, token: Token) -> None:
-        self.__token: Token = token
+class AioClashRoyale:
+    def __init__(self, token: str) -> None:
+        self.__token: str = token
 
     async def get_clans_clan_warlog(
             self,
             clan_tag: str,
-            limit: int = None,
-            after: str = None,
-            before: str = None
-    ) -> ...: ...
+            limit: int = None
+            # after: str = None,
+            # before: str = None,
+
+    ) -> ...:
+        return await CLAN_WAR_LOG.compile(clan_tag, limit=limit, min_members=5, location_id=234234, sadasd=None)
 
     async def get_clans(
             self,
@@ -142,7 +144,7 @@ class AioClashRoyale(ABCClient):
     async def list_locations(
             self
     ) -> ...:
-        ...
+        return await LOCATIONS.compile()
 
     async def list_league_seasons_v2(
             self
