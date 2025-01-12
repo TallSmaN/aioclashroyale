@@ -6,7 +6,7 @@ CLANS: Final[Route] = Route('/clans')
 CLAN_INFO: Final[Route] = Route('/clans/{clan_tag}')
 CLAN_MEMBERS: Final[Route] = Route('/clans/{clan_tag}/members')
 CLAN_WAR_LOG: Final[Route] = Route('/clans/{0}/warlog')
-CLAN_RIVER_RACE_LOG: Final[Route] = Route('/clans/{clan_tag}/riverracelog')
+CLAN_RIVER_RACE_LOG: Final[Route] = Route('/clans/{0}/riverracelog')
 CLAN_CURRENT_WAR: Final[Route] = Route('/clans/{clan_tag}/currentwar')
 CLAN_CURRENT_RIVER_RACE: Final[Route] = Route('/clans/{clan_tag}/currentriverrace')
 

@@ -1,24 +1,30 @@
-from typing import Any, Dict
+from typing import Any, Optional, Dict
 
-from aiohttp import ClientSession, ClientTimeout
+from aiohttp import ClientSession
 
-from . import Route
-from .abc import ABCClient
+from aioclashroyale.client import Token
 
+__all__ = (
+    'AiohttpClient',
+)
 
-class AiohttpClient(ABCClient):
-    def __init__(
-        self,
-        session: ClientSession | None = None,
-        timeout: ClientTimeout | None = None,
-        **session_params: Any,
-    ) -> None:
-        self.session = session
-        self.session_params = session_params
-        self.timeout = timeout or ClientTimeout(total=0)
+class AiohttpClient:
+    __slots__ = ('session', '__headers')
 
+    def __init__(self, token: Token) -> None:
+        self.session: Optional[ClientSession] = None
+        self.__headers: Dict = {'Authorization': f'Bearer {token}'}
 
-    async def request_raw(self, route: Route, data: Dict[str, Any]) -> Any:
-        ...
+        print(self.__headers)
 
+    async def request_raw(self, url: str) -> Any:
+        if not self.session:
+            self.session = ClientSession()
 
+        async with self.session.get(url=url, headers=self.__headers) as response:
+            a = await response.json()
+            print(a)
+            return await response.json()
+
+    async def request_json(self, url: str) -> Any:
+        return await self.request_raw(url=url)

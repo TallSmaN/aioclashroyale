@@ -1,9 +1,9 @@
-from aioclashroyale.const import CLAN_WAR_LOG, CLANS, LOCATIONS
-
+from aioclashroyale.client import AiohttpClient, Token
+from aioclashroyale.const import LOCATIONS, CLAN_RIVER_RACE_LOG
 
 class AioClashRoyale:
-    def __init__(self, token: str) -> None:
-        self.__token: str = token
+    def __init__(self, token: Token) -> None:
+        self.__client: AiohttpClient = AiohttpClient(token)
 
     async def get_clans_clan_warlog(
             self,
@@ -13,7 +13,18 @@ class AioClashRoyale:
             # before: str = None,
 
     ) -> ...:
-        return await CLAN_WAR_LOG.compile(clan_tag, limit=limit, min_members=5, location_id=234234, sadasd=None)
+        url: str = await CLAN_RIVER_RACE_LOG.build_url(
+            clan_tag,
+            limit=limit,
+        )
+        await self.__client.request_raw(url)
+        await self.__client.request_raw(url)
+        await self.__client.request_raw(url)
+        await self.__client.request_raw(url)
+        await self.__client.request_raw(url)
+
+
+
 
     async def get_clans(
             self,

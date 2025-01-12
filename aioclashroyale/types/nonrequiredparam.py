@@ -29,7 +29,7 @@ class NonRequiredParam:
         return self.key == other.key and self.value == other.value
 
     def __repr__(self) -> str:
-        return "<{}: key={!r}, value={!r}>".format(
+        return '<{}: key={!r}, value={!r}>'.format(
             self.__class__.__name__,
             self.key,
             self.value,
