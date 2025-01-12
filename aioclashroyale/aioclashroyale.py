@@ -1,5 +1,7 @@
 from aioclashroyale.client import AiohttpClient, Token
-from aioclashroyale.const import LOCATIONS, CLAN_RIVER_RACE_LOG
+from aioclashroyale.const import CLAN_RIVER_RACE_LOG, LOCATIONS, TOURNAMENTS
+from aioclashroyale.data import TournamentHeaderList
+
 
 class AioClashRoyale:
     def __init__(self, token: Token) -> None:
@@ -17,14 +19,8 @@ class AioClashRoyale:
             clan_tag,
             limit=limit,
         )
-        await self.__client.request_raw(url)
-        await self.__client.request_raw(url)
-        await self.__client.request_raw(url)
-        await self.__client.request_raw(url)
-        await self.__client.request_raw(url)
-
-
-
+        await self.__client.new_request(url)
+        await self.__client.new_request(url)
 
     async def get_clans(
             self,
@@ -96,7 +92,10 @@ class AioClashRoyale:
             limit: int = None,
             after: str = None,
             before: str = None
-    ) -> ...: ...
+    ) -> TournamentHeaderList:
+        return await self.__client.new_request(
+            await TOURNAMENTS.build_url(name=name, limit=limit, after=after, before=before), TournamentHeaderList
+        )
 
     async def get_tournament(
             self,
