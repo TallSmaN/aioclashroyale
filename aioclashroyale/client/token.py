@@ -11,3 +11,5 @@ class Token(str):
     def from_env(cls, env_file: str, key: str = 'CLASH_ROYALE_TOKEN') -> 'Token':
         env.read_envfile(env_file)
         return cls(env.str(key))
+
+

@@ -1,23 +1,17 @@
+__all__ = (
+    'BadRequestException',
+    'ForbiddenException',
+    'NotFoundException',
+    'TooManyRequestsException',
+    'InternalServerException',
+    'ServiceUnavailableException',
+    'EXCEPTION_MAP'
+)
+
 
 class AioClashRoyaleException(Exception):
-    """
-    Base exception class for AioClashRoyale.
-
-    Attributes:
-        reason (str): The reason for the exception.
-        message (str): The message associated with the exception.
-    """
-
-    def __init__(self, reason: str, message: str) -> None:
-        """
-        Initializes the AioClashRoyaleException.
-
-        Args:
-            reason (str): The reason for the exception.
-            message (str): The message associated with the exception.
-        """
-        super().__init__(f'Reason: {reason}\nMessage: {message}')
-
+    def __init__(self, exception_data: dict) -> None:
+        super().__init__(f'Reason: {exception_data['reason']}\nMessage: {exception_data['message']}')
 
 
 class BadRequestException(AioClashRoyaleException):
@@ -28,14 +22,12 @@ class BadRequestException(AioClashRoyaleException):
     """
 
 
-
 class ForbiddenException(AioClashRoyaleException):
     """
     Exception class for forbidden requests.
 
     This exception is raised when a request is forbidden or access is denied.
     """
-
 
 
 class NotFoundException(AioClashRoyaleException):
@@ -46,14 +38,12 @@ class NotFoundException(AioClashRoyaleException):
     """
 
 
-
 class TooManyRequestsException(AioClashRoyaleException):
     """
     Exception class for too many requests.
 
     This exception is raised when too many requests are made within a certain time frame.
     """
-
 
 
 class InternalServerException(AioClashRoyaleException):
@@ -64,7 +54,6 @@ class InternalServerException(AioClashRoyaleException):
     """
 
 
-
 class ServiceUnavailableException(AioClashRoyaleException):
     """
     Exception class for service unavailable.
@@ -73,12 +62,11 @@ class ServiceUnavailableException(AioClashRoyaleException):
     """
 
 
-
-__all__ = (
-    'BadRequestException',
-    'ForbiddenException',
-    'NotFoundException',
-    'TooManyRequestsException',
-    'InternalServerException',
-    'ServiceUnavailableException',
-)
+EXCEPTION_MAP: dict[int, type[Exception]] = {
+    400: BadRequestException,
+    403: ForbiddenException,
+    404: NotFoundException,
+    429: TooManyRequestsException,
+    500: InternalServerException,
+    503: ServiceUnavailableException,
+}

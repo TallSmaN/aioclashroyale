@@ -1,14 +1,13 @@
-from typing import TypeVar, Generic, Generator, Sequence
+from typing import Generator, Sequence
+
 from aioclashroyale.types import NonRequiredParam
 
 __all__ = (
     'ParamList',
 )
 
-T = TypeVar('T', bound=NonRequiredParam)
 
-
-class ParamList(Generic[T]):
+class ParamList[T: NonRequiredParam]:
     __slots__ = ('params',)
 
     def __init__(self, *params: T) -> None:
