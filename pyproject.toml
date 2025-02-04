@@ -1,12 +1,23 @@
 [project]
 name = "aioclashroyale"
 version = "0.1.0"
-description = ""
+description = "Clash Royale API Wrapper"
 authors = [
-    {name = "TallSmaN1",email = "coffi435@gmail.com"}
+    { name = "TallSmaN", email = "coffi435@gmail.com" }
 ]
 readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["clashroyale", "clash royale wrapper"]
 requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "msgspec (>=0.19.0,<0.20.0)",
     "envparse (>=0.2.0,<0.3.0)",
@@ -14,6 +25,8 @@ dependencies = [
     "pretty-errors (>=1.2.25,<2.0.0)",
 ]
 
+[project.urls]
+repository = "https://github.com/TallSmaN/aioclashroyale"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
