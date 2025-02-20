@@ -16,6 +16,7 @@ Clash Royale API Wrapper
 ```python
 from aioclashroyale import AioClashRoyale
 from aioclashroyale.client import Token
+from asyncio import run
 
 
 acr: AioClashRoyale = AioClashRoyale(token=Token.from_env(env_file='.env', key='CLASH_ROYALE_TOKEN'))
@@ -26,7 +27,7 @@ async def main() -> None:
 
     
 if __name__ == '__main__':
-    asyncio.run(main())
+    run(main())
 ```
 
 ### How to setup?
